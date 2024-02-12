@@ -1,0 +1,20 @@
+services:
+  python:
+    image: python
+    container_name: python
+    volumes:
+      - .:/usr/share/nginx/html
+    command: python3 /usr/share/nginx/html/test.py
+    depends_on:
+      - web
+
+  web:
+    image: nginx
+    volumes:
+      - .:/usr/share/nginx/html
+    ports:
+       - 8080:80
+    environment:
+       - NGINX_PORT=80
+    container_name: web
+
